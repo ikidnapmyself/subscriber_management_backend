@@ -4,7 +4,7 @@
 - Copy `.env.example` file to `.env` and edit database credentials there
 - Run `composer install`
 - Run `php artisan key:generate`
-- Run 'php artisan migrate && php artisan db:seed' (if you are using sail - sail artisan migrate && sail artisan db:seed)
+- Run 'php artisan migrate' && 'php artisan db:seed'  (use 'sail' instead of php, if you are running it over the docker)
 - your project would be running at http://localhost if you are using sail. If you are using XAMPP, you have to type the full url with your project name like http://localhost/example_project
 
 ### Screenshots
