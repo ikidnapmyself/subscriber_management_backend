@@ -5,7 +5,7 @@
 - Run `composer install`
 - Run `php artisan key:generate`
 - Run 'php artisan migrate && php artisan db:seed' (if you are using sail - sail artisan migrate && sail artisan db:seed)
-- backend is done now
+- your project would be running at http://localhost if you are using sail. If you are using XAMPP, you have to type the full url with your project name like http://localhost/example_project
 
 ### Screenshots
 
