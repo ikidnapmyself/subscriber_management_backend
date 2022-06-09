@@ -15,6 +15,10 @@ class SubscriberController extends Controller
     public function index()
     {
         $subscriber = Subscriber::all();
+        if($subscriber->isEmpty())
+        {
+            return response()->json(['message' => 'record not found!'], 200);
+        }
         $response = ([
             'data' => $subscriber,
             'message' => 'records found',

@@ -116,4 +116,23 @@ class FieldTest extends TestCase
 
         $response->assertStatus(404);
     }
+
+    public function test_can_delete_a_field()
+    {
+        $subscriber = Subscriber::create([
+            'name' => 'test',
+            'email' => 'test@gmail.com',
+            'state' => 'active'
+        ]);
+
+        $field = Field::create([
+            'subscriber_id' => $subscriber->id,
+            'title' => 'test',
+            'type' => 'string'
+        ]);
+
+        $response = $this->json('DELETE','api/subscribers/'.$subscriber->id.'/fields/'.$field->id);
+
+        $response->assertStatus(200);
+    }
 }

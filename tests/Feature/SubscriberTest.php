@@ -17,9 +17,20 @@ class SubscriberTest extends TestCase
      */
     public function test_can_see_all_subscribers()
     {
+        Subscriber::factory(10)->hasfields(2)->create();
         $response = $this->json('GET','api/subscribers');
 
         $response->assertStatus(200);
+    }
+
+    public function test_empty_db_returns_200_with_record_not_found()
+    {
+        $response = $this->json('GET','api/subscribers');
+
+        $response->assertStatus(200);
+        $response->assertJson([
+            "message" => "record not found!",
+        ]);
     }
 
     public function test_can_add_a_new_subscriber()
@@ -92,7 +103,8 @@ class SubscriberTest extends TestCase
         ]);
     }
 
-    public function test_can_delete_a_subscriber(){
+    public function test_can_delete_a_subscriber()
+    {
         $subscriber = Subscriber::create([
             'name' => 'Amit Leuva',
             'email' => 'amitleuva1987@gmail.com',
@@ -102,5 +114,12 @@ class SubscriberTest extends TestCase
         $response = $this->json('DELETE','api/subscribers/'.$subscriber->id);
         
         $response->assertStatus(200);
+    }
+
+    public function test_can_not_delete_non_existed_subscriber()
+    {
+        $response = $this->json('DELETE','api/subscribers/2');
+        
+        $response->assertStatus(404);
     }
 }
