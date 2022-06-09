@@ -10,5 +10,5 @@
 
 ### Screenshots
 
-- It contains a 'subscribers test' file which runs all api tests
+- It contains a 'subscribers test' and 'field test' file which runs all api tests
 <img src="https://raw.githubusercontent.com/amitleuva1987/subscriber_management_backend/master/tests.jpg" /> 
