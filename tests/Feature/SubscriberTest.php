@@ -22,7 +22,7 @@ class SubscriberTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_can_add_new_subscriber()
+    public function test_can_add_a_new_subscriber()
     {
         $response = $this->json('POST','api/subscribers',[
             'name' => 'Amit Leuva',
@@ -51,7 +51,7 @@ class SubscriberTest extends TestCase
         ]);
     }
 
-    public function test_can_update_subscriber()
+    public function test_can_update_a_subscriber()
     {
         $subscriber = Subscriber::create([
             'name' => 'Amit Leuva',

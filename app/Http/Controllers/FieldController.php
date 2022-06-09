@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Field;
+use App\Models\Subscriber;
 use Illuminate\Http\Request;
 
 class FieldController extends Controller
@@ -15,7 +16,10 @@ class FieldController extends Controller
     public function index($subscriber_id)
     {
         $fields = Field::where('subscriber_id',$subscriber_id)->get();
-
+        if($fields->isEmpty())
+        {
+            return response()->json(['message' => 'record not found!'], 404);
+        }       
         $response = ([
             'data' => $fields,
             'message' => 'records found',
@@ -42,6 +46,8 @@ class FieldController extends Controller
      */
     public function store($subscriber_id,Request $request)
     {
+        Subscriber::findOrFail($subscriber_id);
+        
         $request->validate([
             'title' => 'required',
             'type'  => 'required',
@@ -103,7 +109,7 @@ class FieldController extends Controller
     {
         if($subscriber_id != $field->subscriber_id)
         {
-            return redirect(404);
+            return response()->json(['message' => 'record not found!'], 404);
         }
 
         $request->validate([
@@ -131,7 +137,7 @@ class FieldController extends Controller
     {
         if($subscriber_id != $field->subscriber_id)
         {
-            return redirect(404);
+            return response()->json(['message' => 'record not found!'], 404);
         }
 
         $field->delete();
